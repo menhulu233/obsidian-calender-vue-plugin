@@ -1,90 +1,123 @@
-# Obsidian Sample Plugin
+# Periodic Notes Calendar
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+一个基于 Vue 3 构建的 Obsidian 日历插件，提供年、季度、月、周四种视图，支持周期性笔记管理。
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## 功能特性
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open modal (simple)" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+### 多视图日历
 
-## First time developing plugins?
+- **年视图** - 概览全年，查看每个月的笔记记录情况
+- **季度视图** - 以季度为单位组织和管理笔记
+- **月视图** - 经典月历布局，直观展示每日笔记
+- **周视图** - 聚焦当前周，适合短期规划
 
-Quick starting guide for new plugin devs:
+### 周期性笔记支持
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+完整支持五种周期性笔记：
 
-## Releasing new releases
+| 笔记类型 | 默认格式 | 示例 |
+|---------|---------|------|
+| 日记 | `YYYY-MM-DD` | 2024-01-15 |
+| 周记 | `YYYY-[W]ww` | 2024-W03 |
+| 月记 | `YYYY-MM` | 2024-01 |
+| 季记 | `YYYY-[Q]Q` | 2024-Q1 |
+| 年记 | `YYYY` | 2024 |
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+### 丰富的设置选项
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+- 自定义每种笔记的存储文件夹
+- 灵活的文件名日期格式
+- 支持模板文件，快速初始化笔记内容
+- 创建前确认对话框，防止误操作
+- 智能文件夹和模板自动完成
 
-## Adding your plugin to the community plugin list
+### 快捷命令
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+通过命令面板快速访问：
 
-## How to use
+- `Open calendar view` - 打开日历视图
+- `Open daily note` - 打开日记
+- `Open weekly note` - 打开周记
+- `Open monthly note` - 打开月记
+- `Open quarterly note` - 打开季记
+- `Open yearly note` - 打开年记
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+## 安装
 
-## Manually installing the plugin
+### 手动安装
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+1. 下载最新版本
+2. 解压到 Obsidian 库的 `.obsidian/plugins/periodic-notes-calendar/` 目录
+3. 重启 Obsidian
+4. 在设置中启用插件
 
-## Improve code quality with eslint
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- This project already has eslint preconfigured, you can invoke a check by running`npm run lint`
-- Together with a custom eslint [plugin](https://github.com/obsidianmd/eslint-plugin) for Obsidan specific code guidelines.
-- A GitHub action is preconfigured to automatically lint every commit on all branches.
+### 从源码构建
 
-## Funding URL
+```bash
+# 克隆仓库
+git clone https://github.com/your-username/periodic-notes-calendar.git
+cd periodic-notes-calendar
 
-You can include funding URLs where people who use your plugin can financially support it.
+# 安装依赖
+npm install
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+# 构建生产版本
+npm run build
 ```
 
-If you have multiple URLs, you can also do:
+构建产物将输出到 `dist/` 目录。
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
+## 开发
+
+```bash
+# 开发模式（监听文件变化）
+npm run dev
+
+# 类型检查
+npm run typecheck
 ```
 
-## API Documentation
+## 技术栈
 
-See https://docs.obsidian.md
+- [Vue 3](https://vuejs.org/) - 渐进式 JavaScript 框架
+- [Pinia](https://pinia.vuejs.org/) - Vue 状态管理
+- [TypeScript](https://www.typescriptlang.org/) - 类型安全
+- [Vite](https://vitejs.dev/) - 下一代前端构建工具
+- [Moment.js](https://momentjs.com/) - 日期处理
+
+## 配置说明
+
+### 通用设置
+
+| 设置项 | 说明 | 默认值 |
+|-------|------|-------|
+| Default view | 默认视图模式 | Month view |
+| Confirm before creating | 创建笔记前是否确认 | 开启 |
+
+### 周期性笔记设置
+
+每种笔记类型都可独立配置：
+
+- **Enable** - 是否启用该类型笔记
+- **Folder** - 笔记存储文件夹（支持自动完成）
+- **Format** - 文件名日期格式
+- **Template** - 模板文件路径（支持自动完成）
+
+## 使用技巧
+
+1. **快速导航** - 使用视图切换器旁的箭头按钮快速切换月份/周/季度/年份
+2. **回到今天** - 点击 "Today" 按钮快速返回当前日期
+3. **模板复用** - 为不同类型笔记设置模板，保持笔记结构一致
+4. **文件夹组织** - 建议为不同周期笔记创建独立文件夹，便于管理
+
+## 许可证
+
+[MIT](LICENSE)
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+---
+
+如果这个插件对你有帮助，欢迎 Star 支持
