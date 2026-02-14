@@ -3,8 +3,8 @@
   "name": "Periodic Notes Calendar",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
-  "description": "A calendar plugin with year/quarter/month/week views, supporting customizable periodic notes (daily/weekly/monthly/quarterly/yearly) with templates",
+  "description": "A calendar plugin with year/quarter/month/week views, supporting customizable periodic notes with templates.",
   "author": "FixBitAI",
-  "authorUrl": "https://github.com/your-username",
+  "authorUrl": "https://github.com/menhulu233",
   "isDesktopOnly": false
 }
